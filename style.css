@@ -113,13 +113,17 @@
 }
 
 .footer-contact-mid{
-    /* text-align: right; */
     text-align: left;
 }
 
 .footer-content-left{
+    text-decoration: none;
+    color: #ffff;
     text-align: right;
-    color:#ffff;
     margin-right: 10%;
+}
 
+.footer-content-left-links{
+    text-decoration: none;
+    color: #929292;
 }
