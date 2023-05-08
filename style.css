@@ -1,0 +1,125 @@
+.Background{
+    background-color: rgb(0, 0, 0);
+    height: 100%;
+    width: 100%;
+}
+
+.navbar {
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    left: 0%;
+    padding-left: 15px;
+    bottom: auto;
+    background-color: #000;
+    color: #ffff;
+    font-size: 28px;
+    font-weight: 300;
+    font-family: Rmneue, sans-serif;
+} 
+
+.navbar-links-right{
+    padding: 5px 40px;    
+    letter-spacing: -0.5px;
+    padding-right: 10px;
+    
+}
+
+.navbar-links-right-format{
+    padding-right: 30px;
+    text-decoration: none;
+    color: #ffff;
+}
+
+.home-header {
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+    font-family: Rmneue, sans-serif;
+    color: #929292;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    width: 100%;
+    font-size: 28px;
+    line-height: 30px;
+    text-decoration: none;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 5%;
+    opacity: 1;
+}
+
+.home-header-name {
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+    font-family: Rmneue, sans-serif;
+    color: #ffff;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    width: 100%;
+    font-size: 28px;
+    line-height: 30px;
+    text-decoration: none;
+    /*padding-right: 15px;
+    padding-left: 15px;*/
+    opacity: 1;
+}
+
+.home-grid {
+    display: grid;
+
+    margin-top: 2.5%;
+    margin-right: 20px;
+    margin-left: 20px;
+
+    grid-auto-columns: 1fr;
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+
+}
+
+.home-grid-project {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+    max-height: 100%;
+
+}
+
+.footer-body{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 20px;
+    color: #929292;
+    font-size: 20px;
+    font-weight: 300;
+    font-family: Rmneue, sans-serif;
+
+}
+
+.footer-bold{
+    font-size: 22px;
+    font-weight: 300;
+    color: #ffffff;
+}
+
+.footer-name{
+    font-size: 22px;
+    margin-left: 5%;
+}
+
+.footer-contact-mid{
+    /* text-align: right; */
+    text-align: left;
+}
+
+.footer-content-left{
+    text-align: right;
+    color:#ffff;
+    margin-right: 10%;
+
+}
