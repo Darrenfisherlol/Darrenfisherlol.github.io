@@ -7,7 +7,7 @@
 
 ### Goal:
 
-- Make a Data sceince / Data engineering centered portfolio
+- Make a Data Engineer / Data science centered portfolio
 - Showcase some of the major projects I have worked on
 
 
