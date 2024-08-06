@@ -2,13 +2,18 @@
 
 --- 
 
+
+## Welcome!!
+
 ## What is this? 
 - This is a portfolio page for Darren Fisher 
 
 ### Goal:
 
 - Make a Data Engineer / Data science centered portfolio
+- Showcase some of the major roles I have worked as
 - Showcase some of the major projects I have worked on
+- 
 
 
 ---
