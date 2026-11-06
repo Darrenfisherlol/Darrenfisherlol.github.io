@@ -1,191 +1,273 @@
-.Background{
-    background-color: rgb(0, 0, 0);
-    height: 100%;
+/* ==================================================
+   Home page
+   ================================================== */
+
+body:has(.map){
+    min-height: 100vh;
+    display: grid;
+    /* empty space: 1 part above the title, 3 parts below the map (1fr and 1fr = centered) */
+    grid-template-rows: 1fr auto auto 3fr;
+    justify-items: center;
+}
+
+body:has(.map) .header{
+    grid-row: 2;
+}
+
+.map{
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: minmax(0, 970fr) minmax(0, 710fr) minmax(0, 720fr);
+    /* fit the 16:9 image inside the window (minus room for the title), never upscale past its real size */
+    /* we DONT want to zoom in... bc my drawing lines are soooo pixelated and bad haha */
+    width: min(75%, calc((100vh - 12rem) * 16 / 9), 2400px);
+}
+
+.map-slice{
+    position: relative;
+}
+
+.map-slice img{
+    display: block;
     width: 100%;
+    height: auto;
 }
 
-.navbar {
-    z-index: 100;
-    position: fixed;
-    top: 0;
-    right: 0%;
-    left: 0%;
-    padding-left: 15px;
-    bottom: auto;
-    background-color: #000;
-    color: #ffff;
-    font-size: 28px;
-    font-weight: 300;
-    font-family: Rmneue, sans-serif;
-} 
-
-.navbar-links-right{
-    padding: 5px 40px;    
-    letter-spacing: -0.5px;
-    padding-right: 10px;
-    
+/* highlighted copy sits on top of each slice and fades in on hover */
+.map-hover{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
-.navbar-links-right-format{
-    padding-right: 30px;
-    text-decoration: none;
-    color: #ffff;
+.map-slice:hover .map-hover,
+.map-slice:focus-visible .map-hover{
+    opacity: 1;
+}
+
+
+/* ==================================================
+   About me
+   ================================================== */
+
+/* skill tree: label on the left, list on the right */
+.skills{
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.5rem 1.5rem;
+    margin: 0;
+}
+
+.skills dt{
+    font-weight: bold;
+}
+
+.skills dd{
+    margin: 0;
+}
+
+/* phones: label on top, list underneath */
+@media (max-width: 640px){
+    .skills{
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .skills dd{
+        margin-bottom: 0.5rem;
+    }
+}
+
+
+/* ==================================================
+   Experience
+   ================================================== */
+
+/* the link fills the image box, so the whole image is clickable */
+.body-content-l a{
+    position: absolute;
+    inset: 0;
+}
+
+/* images: muted until you hover anywhere on that job */
+/* phones can't hover, so they just get full color */
+@media (hover: hover){
+    .experience .body-content-image{
+        filter: grayscale(80%); /* 100% = black and white */
+        transition: filter 0.25s ease;
+    }
+
+    .experience .body-content-item:hover .body-content-image,
+    .experience a:focus-visible .body-content-image{
+        filter: none;
+    }
+}
+
+/* small icons under each job: what I used there */
+.tech{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tech img{
+    width: 1rem;
+    height: 1rem;
+}
+
+
+/* ==================================================
+   All pages
+   ================================================== */
+
+:root{
+    --border: 2px solid #000; /* every box border */
+    --accent-color: #5b5bd6; /* purple blue: top links on hover, links in text */
+    color-scheme: light; /* stay black-on-white even in dark mode */
+}
+
+/* site size: 125% looks like browser zoom at 125%, phones stay normal size */
+/* sizes are in rem, so this one number scales the whole site */
+@media (min-width: 800px){
+    html{
+        font-size: 125%;
+    }
+}
+
+body{
+    margin: 0;
+    background: #fff;
+    color: #000;
+    /* Palatino Linotype ships with Windows, Palatino with Mac/iPhone */
+    font-family: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", P052, serif;
+    line-height: 1.5;
+}
+
+a{
+    color: inherit;
+}
+
+h1,
+h2{
+    line-height: 1.2;
+}
+
+h2{
+    margin: 0 0 0.5rem;
+}
+
+p{
+    margin: 0 0 0.75rem;
+}
+
+/* no animations for people who turn them off in their system settings */
+@media (prefers-reduced-motion: reduce){
+    *{
+        transition: none !important;
+    }
 }
 
 /* header */
-
-.home-header {
-    -webkit-text-size-adjust: 100%;
-    box-sizing: border-box;
-    font-family: Rmneue, sans-serif;
-    color: #929292;
-    font-weight: 300;
-    letter-spacing: -0.03em;
-    width: 100%;
-    font-size: 28px;
-    line-height: 30px;
-    text-decoration: none;
-    padding-right: 15px;
-    padding-left: 15px;
-    padding-top: 5%;
-    opacity: 1;
+.header{
+    padding: 1rem 0;
+    text-align: center;
 }
 
-.home-header-name {
-    -webkit-text-size-adjust: 100%;
-    box-sizing: border-box;
-    font-family: Rmneue, sans-serif;
-    color: #ffff;
-    font-weight: 300;
-    letter-spacing: -0.03em;
-    width: 100%;
-    font-size: 28px;
-    line-height: 30px;
+.header a{
     text-decoration: none;
-    /*padding-right: 15px;
-    padding-left: 15px;*/
-    opacity: 1;
 }
 
+.header-title{
+    margin: 0 0 1rem;
+}
 
-/* Grid */
+.header-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
 
-.home-grid {
+/* top links: a box that fills with color on hover */
+.header-content a{
+    border: var(--border);
+    padding: 0.25rem 0.75rem;
+    transition: 0.2s ease;
+}
+
+.header-content a:hover,
+.header-content a:focus-visible{
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+}
+
+/* page layout: everything below is About me + Experience, the home page doesn't use it */
+.page{
+    max-width: 47.5rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.body-content{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.frame{
+    border: var(--border);
+    padding: 1rem;
+}
+
+.frame > :last-child{
+    margin-bottom: 0;
+}
+
+/* image on the left, title + text on the right */
+.body-content-item{
     display: grid;
-
-    margin-top: 2.5%;
-    margin-right: 20px;
-    margin-left: 20px;
-
-    grid-auto-columns: 1fr;
-    grid-column-gap: 40px;
-    grid-row-gap: 40px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 2fr 3fr;
 }
 
-.home-grid-project-container {
+.body-content-l{
     position: relative;
-	width: 100%;
+    min-height: 12.5rem;
+    padding: 0;
 }
 
-/* TESTER CODE */
-
-
-.image-img {
-	display: block;
-	width: 100%;
+/* fills the box and crops, so a tall photo can't stretch the box */
+.body-content-image{
+    position: absolute;
+    inset: 0;
+    width: 100%;
     height: 100%;
-
+    object-fit: cover;
 }
 
-.image-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.6);
-	opacity: 0;
-	transition: opacity 0.25s;
+.body-content-r{
+    border-left: 0; /* image box's border is the divider */
 }
 
-.image-overlay>* { 
-	transform: translateY(20px);
-	transition: transform 0.25s;
+/* links in the text boxes: company names, let's chat, etc */
+.body-content-r a{
+    color: var(--accent-color);
 }
 
-.image-overlay:hover>* {
-	transform: translateY(0);
+/* phones: image on top, text underneath */
+@media (max-width: 640px){
+    .body-content-item{
+        grid-template-columns: 1fr;
+    }
+
+    .body-content-r{
+        border-left: var(--border);
+        border-top: 0;
+    }
 }
 
-.image-overlay-blur {
-	backdrop-filter: blur(1px);
-}
-
-.image-overlay:hover {
-	opacity: 1;
-}
-
-/* Text within boxes */
-
-.image-title {
-	font-size: 32px;
-    color: #ffffff;
-    margin-top: 5%;
-    margin-left: 5%;
-
-}
-
-.image-description {
-	font-size: 26px;
-    color: #ffffff;
-	margin-top: 30%;
-    margin-left: 5%;
-}
-.image-description-sub {
-	font-size: 26px;
-    
-    color: #b9b9b9;
-}
-
-
-
-/* footer */
-.footer-body{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 20px;
-    color: #929292;
-    font-size: 20px;
-    font-weight: 300;
-    font-family: Rmneue, sans-serif;
-
-}
-
-.footer-bold{
-    font-size: 22px;
-    font-weight: 300;
-    color: #ffffff;
-}
-
-.footer-name{
-    font-size: 22px;
-    margin-left: 5%;
-}
-
-.footer-contact-mid{
-    text-align: left;
-}
-
-.footer-content-left{
-    text-decoration: none;
-    color: #ffff;
-    text-align: right;
-    margin-right: 10%;
-}
-
-.footer-content-left-links{
-    text-decoration: none;
-    color: #929292;
+.footer{
+    padding: 2rem 0;
+    text-align: center;
 }
